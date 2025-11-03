@@ -1,0 +1,28 @@
+nav {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    gap: 8rem;
+}
+
+nav a {
+    color: black;
+}
+
+nav a:hover {
+    color: #0077cc;
+    transform: scale(1.05);
+}
+
+nav a.active {
+    color: darkcyan;
+}
+
+@media (max-width: 500px) {
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+    
+}
