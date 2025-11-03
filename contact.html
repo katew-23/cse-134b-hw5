@@ -6,17 +6,6 @@
     <title>Contact Page</title>
     <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
 
-    <script>
-        // Define a simple custom element that logs to console only
-        class HelloWorldElement extends HTMLElement {
-            connectedCallback() {
-            console.log("Hello world!"); 
-            }
-        }
-
-        customElements.define('hello-world', HelloWorldElement);
-    </script>
-
     <style>
         nav {
             border: 20px solid transparent;
@@ -73,23 +62,9 @@
                 <label for="msg">Message:</label> <br>
                 <textarea id="msg" name="msg" cols="60" rows="6"></textarea>
 
-                <!-- Progress tag implementation (static for HW2) -->
-                <label for="msg-progress">Message length (demo):</label>
-                <progress id="msg-progress" value="0" max="500">0/500</progress>
-                <br><br>
-
                 <button type="submit">Submit</button>
             </fieldset>
-        </form>
-
-        <hello-world></hello-world>
-
-        <br>
-        <dialog open>
-            <h3>Message Sent!</h3>
-            <p>Thank you for reaching out. I'll get back to you soon.</p>
-            <p><i>This is a demo dialog shown for HW2.</i></p>
-        </dialog>
+        </form>        
     </main>
 
     <footer>

@@ -90,22 +90,6 @@
                 </td>
             </tr>
 
-            <tr>
-                <td>
-                    <canvas id="trendCanvas" width="480" height="160"></canvas>
-                    <script>
-                        const c = document.getElementById('trendCanvas').getContext('2d');
-                        c.beginPath(); c.moveTo(30,130); c.lineTo(30,20); c.lineTo(470,20); c.stroke();
-                        const pts = [30,120, 120,90, 210,110, 300,70, 390,95, 470,60];
-                        c.beginPath(); c.moveTo(pts[0],pts[1]);
-                        for (let i=2;i<pts.length;i+=2) c.lineTo(pts[i],pts[i+1]);
-                        c.stroke();
-                    </script>
-                </td>
-                <td>
-                    Canvas Demo
-                </td>
-            </tr>
          </table>
     </main>
 
