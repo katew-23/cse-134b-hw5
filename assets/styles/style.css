@@ -204,6 +204,67 @@ skill-subsection ol {
     white-space: pre-line;
 }
 
+.contact-heading {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+form {
+    fieldset {
+        border: 1px solid;
+        border-radius: 0.5rem;
+        padding: 2rem 3rem;
+        width: 50%;
+    }
+
+    legend {
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 0 0.5rem;
+    }
+
+    label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 0.6rem;
+        border: 1px solid black;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+    button {
+        background-color: rgb(220, 220, 181);
+        color: black;
+        border: 1px solid;
+        border-radius: 0.5rem;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    button:hover {
+        background-color: rgb(177, 177, 123);
+    }
+}
+
 footer {
     text-align: center;
     padding: 0.5rem 0;
@@ -227,6 +288,13 @@ footer {
 
     .project td:last-child {
         padding-left: 0;
+    }
+
+    form {
+        fieldset {
+            width: 85%;
+            padding: 2rem;
+        }
     }
     
 }
