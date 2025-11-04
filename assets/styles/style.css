@@ -334,3 +334,31 @@ footer {
     }
     
 }
+
+.scroller {
+  --scrollbar-color-track: rgb(255, 186, 107);
+  --scrollbar-color-thumb: rgb(237, 237, 237);
+  --scrollbar-width: auto;
+  --scrollbar-gutter: auto;
+}
+
+@supports ((scrollbar-gutter: stable) and (scrollbar-width: auto)) {
+  .scroller {
+    scrollbar-width: var(--scrollbar-width);
+    scrollbar-gutter: var(--scrollbar-gutter);
+  }
+
+  .warning {
+    display: none;
+  }
+}
+
+@supports (scrollbar-color: lime hotpink) {
+  .scroller {
+    scrollbar-color: var(--scrollbar-color-thumb) var(--scrollbar-color-track);
+  }
+
+  [data-when="scrollbar-color"] {
+    display: flex;
+  }
+}
