@@ -3,6 +3,7 @@
 :root {
     --bg: #faf6df;
     --card-bg: #fdfced;
+    --font: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 }
 
 * {
@@ -10,7 +11,7 @@
 }
 
 body {
-    font-family: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-family: var(--font);
     margin: 0;
 }
 
@@ -205,6 +206,7 @@ skill-subsection ol {
 }
 
 .center-heading {
+    margin-top: 0;
     text-align: center;
 }
 
@@ -232,7 +234,13 @@ form {
     label {
         display: block;
         font-weight: 600;
-        margin-bottom: 0.3rem;
+    }
+
+    label[for="fullName"]::after,
+    label[for="email"]::after{
+        content: " *";
+        color: red;
+        font-weight: bold;
     }
 
     input,
@@ -242,10 +250,35 @@ form {
         border: 1px solid black;
         border-radius: 5px;
         font-size: 1rem;
+        margin: 1rem 0;
     }
 
     textarea {
         resize: vertical;
+    }
+
+    input:required,
+    textarea:required {
+        border-left: 4px solid #b00020;
+    }
+
+    input:optional,
+    textarea:optional {
+        border-left: 4px solid #ccc;
+    }
+
+    input:user-invalid,
+    textarea:user-invalid {
+        border-color: #b00020;
+    }
+
+    input:user-valid{
+        border-color: green;
+    }
+
+    input:placeholder-shown,
+    textarea:placeholder-shown {
+        font-family: var(--font);
     }
 
     button {
@@ -262,6 +295,30 @@ form {
 
     button:hover {
         background-color: rgb(177, 177, 123);
+    }
+
+    .form-messages {
+        margin-top: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        min-height: 2.5rem; 
+    }
+
+    .form-error {
+        display: none;
+        font-size: 0.9rem;
+        color: #b00020;
+    }
+
+    input:invalid:not(:placeholder-shown) ~ .form-messages .form-error,
+    textarea:invalid:not(:placeholder-shown) ~ .form-messages .form-error {
+        display: block;
+    }
+
+    .form-info {
+        font-size: 0.9rem;
+        color: #006400;
     }
 }
 

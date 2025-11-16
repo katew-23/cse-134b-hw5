@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Page</title>
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/styles/style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a> 
+            <a href="experiences.html">Experiences</a> 
+            <a href="projects.html">Projects</a> 
+            <a href="form-no-js.html" class="active">Contact</a> 
+            <a href="resume.html">Resume</a>
+        </nav>
+        <hr>
+    </header>
+
+    <noscript>This site works without JavaScript. Some embeds just won't load.</noscript>
+
+    <main>
+        <h1 class="center-heading">Let's Connect!</h1>
+        <form action="https://httpbin.org/post" method="POST">
+            <fieldset>
+                <legend>Contact Form</legend>
+
+                <label for="fullName">Full Name:</label>
+                <input 
+                    type="text" 
+                    name="fullName" 
+                    id="fullName" 
+                    placeholder="Full Name"
+                    required
+                    minlength="2"
+                    maxlength="70"
+                    pattern="[A-Za-z\s'-]"
+                    autofocus
+                >
+                
+                <label for="email">Email:</label>
+                <input 
+                    type="email" 
+                    name="email" 
+                    id="email" 
+                    placeholder="name@example.com"
+                    required
+                    minlength="5"
+                    maxlength="70"
+                >
+                
+                <label for="msg">Message:</label>
+                <textarea 
+                    name="msg" 
+                    id="msg" 
+                    rows="6"
+                    placeholder="Write your message here..."
+                    optional
+                    maxlength="500"
+                ></textarea>
+
+                <input type="hidden" name="possible_bot" value="true">
+
+                <div class="form-messages">
+                    <output id="form-error" class="form-error">Please correct the fields highlighted in red.</output>
+                    <output id="form-info" class="form-info"></output>
+                </div>
+
+                <button type="submit">Submit</button>
+            </fieldset>
+        </form>        
+    </main>
+
+    <footer>
+       <p>
+            &copy; 2025 Kate Wang |
+            <a href="https://www.linkedin.com/in/kate-wang-174593244/">LinkedIn</a>
+        </p>
+    </footer>
+    
+</body>
+
+</html>
