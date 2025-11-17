@@ -4,6 +4,38 @@
     --bg: #faf6df;
     --card-bg: #fdfced;
     --font: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+    --text: #000000;
+    --accent: darkcyan;
+    --button-bg: rgb(220, 220, 181);
+    --button-bg-hover: rgb(177, 177, 123);
+    --border-color: #000000;
+}
+
+:root[data-theme="dark"] {
+    --bg: #111827;
+    --card-bg: #1f2937;
+    --text: #dbdcdc;
+    --accent: #7dd3fc;
+    --button-bg: #374151;
+    --button-bg-hover: #4b5563;
+    --border-color: #dbdcdc;
+}
+
+.theme-toggle {
+    border-radius: 999px;
+    border: 1px solid currentColor;
+    padding: 0.3rem 0.9rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    align-self: center;
+    background-color: transparent;
+    color: var(--text);
+    font-family: var(--font);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.03);
 }
 
 * {
@@ -13,6 +45,7 @@
 body {
     font-family: var(--font);
     margin: 0;
+    color: var(--text, black);
 }
 
 header {
@@ -24,11 +57,11 @@ nav {
     display: flex;
     justify-content: center;
     padding: 1rem;
-    gap: 8rem;
+    gap: 6rem;
 }
 
 nav a {
-    color: black;
+    color: var(--text);
 }
 
 nav a:hover {
@@ -37,7 +70,7 @@ nav a:hover {
 }
 
 nav a.active {
-    color: darkcyan;
+    color: var(--accent);
 }
 
 main {
@@ -248,10 +281,11 @@ form {
         box-sizing: border-box;
         width: 100%;
         padding: 0.6rem;
-        border: 1px solid black;
+        border: 1px solid var(--border-color);
         border-radius: 5px;
         font-size: 1rem;
         margin: 1rem 0;
+        color: var(--text);
     }
 
     textarea {
@@ -293,8 +327,8 @@ form {
     }
 
     button {
-        background-color: rgb(220, 220, 181);
-        color: black;
+        background-color: var(--button-bg);
+        color: var(--text);
         border: 1px solid;
         border-radius: 0.5rem;
         padding: 0.8rem 1.5rem;
@@ -305,7 +339,7 @@ form {
     }
 
     button:hover {
-        background-color: rgb(177, 177, 123);
+        background-color: var(--button-bg-hover);
     }
 
     .form-messages {
@@ -329,7 +363,7 @@ form {
 
     .form-info {
         font-size: 0.9rem;
-        color: #006400;
+        color: green;
     }
 }
 

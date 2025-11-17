@@ -17,11 +17,15 @@
             <a href="form-no-js.html">Contact (No JS)</a> 
             <a href="form-with-js.html" class="active">Contact (With JS)</a>
             <a href="resume.html">Resume</a>
+            <button id="theme-toggle" class="theme-toggle" type="button" hidden>
+                Toggle Dark Mode
+            </button>
         </nav>
         <hr>
     </header>
 
-    <noscript>This site works without JavaScript. Some enhanced validation features are disabled.</noscript>
+    <noscript>JavaScript is disabled. The form will still work, but enhanced features like dark mode 
+            and live validation are unavailable.</noscript>
 
     <main>
         <h1 class="center-heading">Let's Connect!</h1>
@@ -217,6 +221,7 @@
         });
     </script>
     
+    <script src="assets/scripts/theme.js" defer></script>
 </body>
 
 </html>
