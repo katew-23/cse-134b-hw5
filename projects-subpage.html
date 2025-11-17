@@ -23,53 +23,59 @@
 
     <noscript>This site works without JavaScript. Some embeds just won't load.</noscript>
 
-    <main>         
+    <main class="fade-in">         
         <a class="back-link" href="projects.html" aria-label="Back to projects">←</a>
         <h1 class="center-heading">Memori</h1>
        
-        <project-section>
-            <h2>My role in the project:</h2>
-            <div class="proj-desc">
-                <p>
-                    For my project Memori, I developed a cross-platform mobile application using React Native and 
-                    Expo to let users create and share photo and video albums with built-in journaling and a calendar view. 
-                    I implemented core features such as album creation, media upload, and user authentication, connecting the 
-                    front end to a real-time backend. I also designed the navigation flow and optimized the layout for 
-                    responsive performance across iOS and Android devices.
-                </p>
-                <p>
-                    Beyond front-end development, I structured the data models to efficiently store user albums, 
-                    metadata, and media references while maintaining synchronization across users' shared albums. 
-                    I focused on building modular and reusable components to streamline future development and 
-                    improve scalability. Working in an agile environment, I translated product ideas into concrete 
-                    implementation tasks, conducted regular testing, and refined UI elements based on feedback to 
-                    enhance usability. Through Memori, I gained hands-on experience with full-stack mobile development, 
-                    UI design, and cloud-based data management.
-                </p>
-            </div>
-        </project-section>
+        <section id="project-detail" class="project-detail">
+            <project-section class="project-panel is-active" data-view="role">
+                <h2>My role in the project:</h2>
+                <div class="proj-desc">
+                    <p>
+                        For my project Memori, I developed a cross-platform mobile application using React Native and 
+                        Expo to let users create and share photo and video albums with built-in journaling and a calendar view. 
+                        I implemented core features such as album creation, media upload, and user authentication, connecting the 
+                        front end to a real-time backend. I also designed the navigation flow and optimized the layout for 
+                        responsive performance across iOS and Android devices.
+                    </p>
+                    <p>
+                        Beyond front-end development, I structured the data models to efficiently store user albums, 
+                        metadata, and media references while maintaining synchronization across users' shared albums. 
+                        I focused on building modular and reusable components to streamline future development and 
+                        improve scalability. Working in an agile environment, I translated product ideas into concrete 
+                        implementation tasks, conducted regular testing, and refined UI elements based on feedback to 
+                        enhance usability. Through Memori, I gained hands-on experience with full-stack mobile development, 
+                        UI design, and cloud-based data management.
+                    </p>
+                </div>
+            </project-section>
 
-        <project-section>
-            <h2>What I learned:</h2>
-            <div class="proj-desc">
-                <p>
-                    Through Memori, I learned how to take a product from concept to deployment while balancing both 
-                    technical implementation and user experience design. Building the app from scratch taught me how 
-                    to integrate front-end components with real-time backend services, handle asynchronous data flows, 
-                    and manage state effectively in React Native. I became more comfortable debugging complex issues 
-                    related to authentication, media rendering, and data synchronization, which strengthened my 
-                    problem-solving and debugging skills.
-                </p>
-                <p>
-                    Working with a small team in an agile development cycle also taught me the importance of clear 
-                    communication, version control, and iteration. I learned how to break down large goals into 
-                    achievable sprint tasks, gather feedback, and refine features for better usability. Most importantly, 
-                    the project gave me a deeper appreciation for how technical design decisions impact user experience--
-                    how small details in data structure, performance, and interface design can make an app feel more 
-                    seamless, personal, and meaningful to its users.
-                </p>
-            </div>
-        </project-section>
+            <project-section class="project-panel" data-view="learned">
+                <h2>What I learned:</h2>
+                <div class="proj-desc">
+                    <p>
+                        Through Memori, I learned how to take a product from concept to deployment while balancing both 
+                        technical implementation and user experience design. Building the app from scratch taught me how 
+                        to integrate front-end components with real-time backend services, handle asynchronous data flows, 
+                        and manage state effectively in React Native. I became more comfortable debugging complex issues 
+                        related to authentication, media rendering, and data synchronization, which strengthened my 
+                        problem-solving and debugging skills.
+                    </p>
+                    <p>
+                        Working with a small team in an agile development cycle also taught me the importance of clear 
+                        communication, version control, and iteration. I learned how to break down large goals into 
+                        achievable sprint tasks, gather feedback, and refine features for better usability. Most importantly, 
+                        the project gave me a deeper appreciation for how technical design decisions impact user experience--
+                        how small details in data structure, performance, and interface design can make an app feel more 
+                        seamless, personal, and meaningful to its users.
+                    </p>
+                </div>
+            </project-section>
+            
+            <button id="view-toggle" class="view-toggle">
+                Show what I learned
+            </button>
+        </section>
     </main>
 
     <footer>
@@ -79,6 +85,41 @@
         </p>
     </footer>
     
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.getElementById("project-detail");
+            const toggleBtn = document.getElementById("view-toggle");
+            const panels = Array.from(container.querySelectorAll(".project-panel"));
+
+            let currentIndex = panels.findIndex(p => p.classList.contains("is-active"));
+            if (currentIndex === -1) currentIndex = 0;
+
+            function updateButtonLabel() {
+                toggleBtn.textContent =
+                currentIndex === 0 ? "Show what I learned" : "Show my role in the project";
+            }
+
+            function setActive(nextIndex) {
+                panels[currentIndex].classList.remove("is-active");
+                currentIndex = nextIndex;
+                panels[currentIndex].classList.add("is-active");
+                updateButtonLabel();
+            }
+
+            function withTransition(callback) {
+                if (!document.startViewTransition) return callback();
+                document.startViewTransition(callback);
+            }
+
+            toggleBtn.addEventListener("click", () => {
+                withTransition(() => {
+                setActive(currentIndex === 0 ? 1 : 0);
+                });
+            });
+
+            updateButtonLabel();
+        });
+    </script>
 </body>
 
 </html>

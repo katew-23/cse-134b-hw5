@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Permanent+Marker&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
+@view-transition {
+    navigation: auto;
+}
+
+@keyframes fadeIn {
+    0% { 
+        opacity: 0; 
+    }
+    100% { 
+        opacity: 1; 
+    }
+}
+
+.fade-in {
+    animation-name: fadeIn;
+    animation-duration: 500ms;
+}
+
 :root {
     --bg: #faf6df;
     --card-bg: #fdfced;
@@ -75,6 +93,7 @@ nav a.active {
 
 main {
     padding: 2rem 4rem; 
+    view-transition-name: main;
 }
 
 section {
@@ -381,11 +400,26 @@ form {
     vertical-align: middle;      
 }
 
+.project-detail {
+    view-transition-name: project-detail;
+}
+
+#project-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   
+    align-items: center;       
+    text-align: left;          
+    margin: 0 auto;
+    max-width: 60rem;         
+}
+
 project-section {
+    display: none;
+}
+
+project-section.is-active {
     display: block;
-    margin-inline: auto;
-    max-width: 68ch;       
-    margin-block: 3rem;    
 }
 
 project-section > h2 {
@@ -396,12 +430,26 @@ project-section > h2 {
 }
 
 .proj-desc {
-  max-width: 58ch;
-  margin-left: 2rem;
+    max-width: 58ch;
+    margin-left: 2rem;
 }
 
 .proj-desc p + p {
-  margin-top: 1rem;
+    margin-top: 1rem;
+}
+
+.view-toggle {
+    margin: 1rem auto 0;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--button-bg);
+    font-family: var(--font);
+    cursor: pointer;
+}
+
+.view-toggle:hover {
+    background-color: var(--button-bg-hover);
 }
 
 footer {
@@ -441,30 +489,84 @@ footer {
     
 }
 
-.scroller {
-  --scrollbar-color-track: rgb(255, 186, 107);
-  --scrollbar-color-thumb: rgb(237, 237, 237);
-  --scrollbar-width: auto;
-  --scrollbar-gutter: auto;
+/* these do not always work for some reason
+
+::view-transition-group(main) {
+    animation-duration: 0.5s;
 }
 
-@supports ((scrollbar-gutter: stable) and (scrollbar-width: auto)) {
-  .scroller {
-    scrollbar-width: var(--scrollbar-width);
-    scrollbar-gutter: var(--scrollbar-gutter);
-  }
-
-  .warning {
-    display: none;
-  }
+@keyframes fadeInLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
 }
 
-@supports (scrollbar-color: lime hotpink) {
-  .scroller {
-    scrollbar-color: var(--scrollbar-color-thumb) var(--scrollbar-color-track);
-  }
+@keyframes fadeOutRight {
+    0% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
 
-  [data-when="scrollbar-color"] {
-    display: flex;
-  }
+@keyframes fadeOut {
+    0% { 
+        opacity: 1; 
+    }
+    100% { 
+        opacity: 0; 
+    }
+}
+
+::view-transition-old(main) {
+    animation: fadeOut 0.4s ease-out;
+}
+
+::view-transition-new(main) {
+    opacity: 0; 
+    animation: fadeIn 0.4s ease-in;
+}
+*/
+
+@keyframes slide {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+article {
+    animation: slide linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+}
+
+@keyframes project-slide-out {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(-20px); }
+}
+
+@keyframes project-slide-in {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+::view-transition-old(project-detail) {
+  animation: project-slide-out 200ms ease-out forwards;
+}
+
+::view-transition-new(project-detail) {
+  animation: project-slide-in 200ms ease-in forwards;
 }
