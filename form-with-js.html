@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Page With JS</title>
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/styles/style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a> 
+            <a href="experiences.html">Experiences</a> 
+            <a href="projects.html">Projects</a> 
+            <a href="form-no-js.html">Contact (No JS)</a> 
+            <a href="form-with-js.html" class="active">Contact (With JS)</a>
+            <a href="resume.html">Resume</a>
+        </nav>
+        <hr>
+    </header>
+
+    <noscript>This site works without JavaScript. Some enhanced validation features are disabled.</noscript>
+
+    <main>
+        <h1 class="center-heading">Let's Connect!</h1>
+        <form action="https://httpbin.org/post" method="POST" id="contact-form" novalidate>
+            <fieldset>
+                <legend>Contact Form</legend>
+
+                <label for="fullName">Full Name:</label>
+                <input 
+                    type="text" 
+                    name="fullName" 
+                    id="fullName" 
+                    placeholder="Full Name"
+                    required
+                    minlength="3"
+                    maxlength="70"
+                    pattern="[A-Za-z\s'-]"
+                    autofocus
+                >
+                
+                <label for="email">Email:</label>
+                <input 
+                    type="email" 
+                    name="email" 
+                    id="email" 
+                    placeholder="name@example.com"
+                    required
+                    minlength="5"
+                    maxlength="70"
+                >
+                
+                <label for="msg">Message:</label>
+                <textarea 
+                    name="msg" 
+                    id="msg" 
+                    rows="6"
+                    placeholder="Write your message here..."
+                    optional
+                    maxlength="500"
+                ></textarea>
+
+                <div id="msg-count" class="char-counter">
+                    500 characters remaining
+                </div>
+
+                <input type="hidden" name="possible_bot" value="true">
+
+                <input type="hidden" name="form-errors" id="form-errors">
+
+                <div class="form-messages">
+                    <output id="form-error" class="form-error">Please correct the fields highlighted in red.</output>
+                    <output id="form-info" class="form-info"></output>
+                </div>
+
+                <button type="submit">Submit</button>
+            </fieldset>
+        </form>        
+    </main>
+
+    <footer>
+       <p>
+            &copy; 2025 Kate Wang |
+            <a href="https://www.linkedin.com/in/kate-wang-174593244/">LinkedIn</a>
+        </p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("contact-form");
+            const fullName = document.getElementById("fullName");
+            const email = document.getElementById("email");
+            const msg = document.getElementById("msg");
+            const errorBox = document.getElementById("form-error");
+            const infoBox = document.getElementById("form-info");
+            const errorsField = document.getElementById("form-errors");
+            const msgCount = document.getElementById("msg-count");
+
+            let formErrors = [];
+
+            function showError(message, temporary){
+                errorBox.textContent = message;
+                if (message) {
+                    errorBox.style.display = "block";
+                } else {
+                    errorBox.style.display = "";
+                }
+
+                if (temporary) {
+                    const current = message;
+                    setTimeout(function () {
+                        if (errorBox.textContent === current) {
+                            errorBox.textContent = "";
+                            errorBox.style.display = "";
+                        }
+                    }, 5000);
+                }
+            }
+
+            function showInfo(message) {
+                infoBox.textContent = message || "";
+            }
+
+            const illegalNameChars = /[^A-Za-z\s'-]/g;
+
+            fullName.addEventListener("input", function () {
+                const value = fullName.value;
+                if(illegalNameChars.test(value)){
+                    fullName.value = value.replace(illegalNameChars, "");
+                    fullName.classList.add("flash");
+                    setTimeout(function () {
+                        fullName.classList.remove("flash");
+                    }, 1000);
+
+                    showError(
+                        "Full name can only use letters, spaces, apostrophes, and hyphens.",
+                        true
+                    );
+                }
+            });
+
+            const maxChars = msg.maxLength || 500;
+
+            function updateCounter() {
+                const remaining = maxChars - msg.value.length;
+                msgCount.textContent = remaining + " characters remaining";
+
+                if(remaining <= 50) {
+                    msgCount.classList.add("near-limit");
+                }
+                else {
+                    msgCount.classList.remove("near-limit");
+                }
+            }
+
+            msg.addEventListener("input", updateCounter);
+            updateCounter();
+
+            function reasonForField(field){
+                const v = field.validity;
+                if (v.valueMissing) 
+                    return "The field(s) highlighted in red is required.";
+                if (v.typeMismatch && field.type === "email")
+                    return "Please enter a valid email address (name@example.com).";
+                if (v.tooShort)
+                    return "Please enter at least " + field.minLength + " characters.";
+                if (v.patternMismatch)
+                    return "Please use only letters, spaces, apostrophes, and hyphens.";
+                return "Invalid value.";
+            }
+ 
+            form.addEventListener("submit", function(event) {
+                showError("");
+                showInfo("");
+
+                const fields = [fullName, email, msg];
+                let hasError = false;
+                const thisAttemptErrors = [];
+
+                fields.forEach(function(field) {
+                    if(!field.checkValidity()){
+                        hasError = true;
+                        const reason = reasonForField(field);
+
+                        const errorObj = {
+                            field: field.name || field.id,
+                            value: field.value,
+                            reason: reason
+                        };
+
+                        thisAttemptErrors.push(errorObj);
+                        formErrors.push(errorObj);
+                    }
+                });
+
+                if(hasError){
+                    event.preventDefault();
+
+                    if (thisAttemptErrors.length > 0) {
+                        showError(thisAttemptErrors[0].reason);
+                    } 
+                    else {
+                        showError("Please fix the highlighted fields before submitting.");
+                    }
+                }
+                else{
+                    showInfo("Form looks good — submitting now!");
+                }
+
+                if (errorsField) {
+                    errorsField.value = JSON.stringify(formErrors);
+                }
+            });
+        });
+    </script>
+    
+</body>
+
+</html>

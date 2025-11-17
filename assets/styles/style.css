@@ -245,6 +245,7 @@ form {
 
     input,
     textarea {
+        box-sizing: border-box;
         width: 100%;
         padding: 0.6rem;
         border: 1px solid black;
@@ -279,6 +280,16 @@ form {
     input:placeholder-shown,
     textarea:placeholder-shown {
         font-family: var(--font);
+    }
+
+    .char-counter {
+        font-size: 0.85rem;
+        text-align: right;
+    }
+
+    .char-counter.near-limit {
+        color: #b00020;
+        font-weight: 600;
     }
 
     button {
@@ -320,6 +331,10 @@ form {
         font-size: 0.9rem;
         color: #006400;
     }
+}
+
+.flash {
+    background-color: #ffe6e6;
 }
 
 .back-link {
