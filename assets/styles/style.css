@@ -90,19 +90,19 @@
     transform: scale(1.03);
 }
 
-* {
-    background-color: var(--bg, #ffffff);
-}
 
 body {
     font-family: var(--font);
     margin: 0;
     color: var(--text, black);
+    background-color: var(--bg, #ffffff);
 }
 
 header {
     position: sticky;
     top: 0;
+    background-color: var(--bg, #ffffff);
+    z-index: 999;
 }
 
 nav {
@@ -339,6 +339,7 @@ form {
         font-size: 1rem;
         margin: 1rem 0;
         color: var(--text);
+        background-color: transparent;
     }
 
     textarea {
