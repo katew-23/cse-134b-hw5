@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <title>Choose Theme</title>
+    <script>
+        (function () {
+            let savedTheme = "light";
+            try {
+                savedTheme = localStorage.getItem("site-theme") || "light";
+            } catch (e) {
+                savedTheme = "light";
+            }
+
+            document.documentElement.dataset.theme = savedTheme;
+
+            if (savedTheme === "custom") {
+                try {
+                    const raw = localStorage.getItem("site-theme-custom");
+                    if (raw) {
+                    const options = JSON.parse(raw);
+                    const root = document.documentElement;
+                    if (options.bg) {
+                        root.style.setProperty("--bg", options.bg);
+                        root.style.setProperty("--card-bg", options.bg);
+                    }
+                    if (options.text) {
+                        root.style.setProperty("--text", options.text);
+                    }
+                    if (options.font) {
+                        root.style.setProperty("--font", options.font);
+                    }
+                    }
+                } catch (e) {
+                    // ignore
+                }
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <script src="assets/scripts/theme.js" defer></script>
+</head>
+<body>
+     <noscript>
+        <style>
+            .theme-btn {
+                display: none !important;
+            }
+        </style>
+        JavaScript is disabled in your browser. Some interactive features such as theme switching will not work.
+    </noscript>
+    
+    <header>
+        <nav>
+            <a href="index.html">Home</a> 
+            <a href="experiences.html">Experiences</a>
+            <a href="projects.html">Projects</a> 
+            <a href="form-no-js.html">Contact (No JS)</a> 
+            <a href="form-with-js.html">Contact (With JS)</a>
+            <a href="resume.html">Resume</a>
+            <a href="theme.html" class="theme-btn active">Change Theme</a>
+        </nav>
+        <hr>
+    </header>
+
+    <main class="fade-in">
+        <h1>Choose a Theme</h1>
+
+        <section class="theme-options">
+            <button type="button" data-theme-option="light">Light (Beige)</button>
+            <button type="button" data-theme-option="dark">Dark (Dark Blue)</button>
+            <button type="button" data-theme-option="forest">Forest (Dark Green)</button>
+            <button type="button" data-theme-option="playful">Playful (Playful Fonts)</button>
+        </section>
+
+        <section class="custom-theme">
+            <h2>Custom theme</h2>
+            <p>Pick a text color, background, and font style:</p>
+
+            <label for="customTextColor">
+                Text color
+                <select id="customTextColor">
+                    <option value="#111827">Dark gray</option>
+                    <option value="#000000">Black</option>
+                    <option value="#ffffff">White</option>
+                    <option value="#f97316">Warm orange</option>
+                </select>
+            </label>
+
+            <label for="customBgColor">
+                Background color
+                <select id="customBgColor">
+                    <option value="#f9fafb">Soft gray</option>
+                    <option value="#fff7ed">Warm cream</option>
+                    <option value="#0f172a">Deep navy</option>
+                    <option value="#022c22">Forest green</option>
+                </select>
+            </label>
+
+            <label for="customFont">
+                Font style
+                <select id="customFont">
+                    <option value='"Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace'>
+                    Monospace
+                    </option>
+                    <option value='"Noto Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'>
+                    Clean sans
+                    </option>
+                    <option value='"Permanent Marker", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'>
+                    Handwritten
+                    </option>
+                </select>
+            </label>
+
+            <button type="button" id="applyCustomTheme">
+                Apply custom theme
+            </button>
+        </section>
+    </main>
+
+</body>
+</html>

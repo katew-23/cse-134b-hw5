@@ -18,7 +18,8 @@
     animation-duration: 500ms;
 }
 
-:root {
+:root,
+:root[data-theme="light"] {
     --bg: #faf6df;
     --card-bg: #fdfced;
     --font: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
@@ -38,6 +39,39 @@
     --button-bg: #374151;
     --button-bg-hover: #4b5563;
     --border-color: #dbdcdc;
+}
+
+:root[data-theme="forest"] {
+   --bg: #0b1c14;          
+    --card-bg: #10271d;     
+    --text: #d8e7dd;       
+    --accent: #34d399;     
+    --button-bg: #134e4a;      
+    --button-bg-hover: #0f766e; 
+    --border-color: #34d399;
+    --font: "Noto Sans", system-ui, sans-serif;
+}
+
+:root[data-theme="playful"] {
+    --bg: #fff7ed;
+    --card-bg: #fffbeb;
+    --text: #1f2933;
+    --accent: #f97316;
+    --button-bg: #fde68a;
+    --button-bg-hover: #facc15;
+    --border-color: #1f2933;
+    --font: "Permanent Marker", system-ui, sans-serif;
+}
+
+:root[data-theme="custom"] {
+    --bg: #f3f4f6;
+    --card-bg: #e5e7eb;
+    --text: #111827;
+    --accent: #0ea5e9;
+    --button-bg: #d1d5db;
+    --button-bg-hover: #9ca3af;
+    --border-color: #111827;
+    --font: "Noto Sans", system-ui, sans-serif;
 }
 
 .theme-toggle {
@@ -300,7 +334,7 @@ form {
         box-sizing: border-box;
         width: 100%;
         padding: 0.6rem;
-        border: 1px solid var(--border-color);
+        border: 1px solid var(--text);
         border-radius: 5px;
         font-size: 1rem;
         margin: 1rem 0;
@@ -554,19 +588,90 @@ article {
 }
 
 @keyframes project-slide-out {
-  from { opacity: 1; transform: translateX(0); }
-  to   { opacity: 0; transform: translateX(-20px); }
+    from { opacity: 1; transform: translateX(0); }
+    to   { opacity: 0; transform: translateX(-20px); }
 }
 
 @keyframes project-slide-in {
-  from { opacity: 0; transform: translateX(20px); }
-  to   { opacity: 1; transform: translateX(0); }
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
 }
 
 ::view-transition-old(project-detail) {
-  animation: project-slide-out 200ms ease-out forwards;
+    animation: project-slide-out 200ms ease-out forwards;
 }
 
 ::view-transition-new(project-detail) {
-  animation: project-slide-in 200ms ease-in forwards;
+    animation: project-slide-in 200ms ease-in forwards;
+}
+
+.theme-options button {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    background: var(--button-bg);
+    color: var(--text);
+    border-radius: 0.5rem;
+    font-family: var(--font);
+    cursor: pointer;
+}
+
+.theme-options button:hover {
+    background: var(--button-bg-hover);
+}
+
+.custom-theme {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    background-color: transparent;
+    border: 1px solid var(--text);
+    font-family: var(--font);
+}
+
+.custom-theme h2 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+    color: var(--text);
+}
+
+.custom-theme label {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: var(--text);
+}
+
+.custom-theme select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.35rem;
+
+    background-color: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--text);
+    border-radius: 0.5rem;
+
+    font-family: var(--font);
+    font-size: 1rem;
+}
+
+#applyCustomTheme {
+    display: inline-block;
+
+    margin-top: 0.5rem;
+    padding: 0.6rem 1.25rem;
+
+    background-color: var(--button-bg);
+    color: var(--text);
+    border: 1px solid var(--text);
+    border-radius: 0.5rem;
+
+    font-family: var(--font);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#applyCustomTheme:hover {
+    background-color: var(--button-bg-hover);
 }

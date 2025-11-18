@@ -5,10 +5,53 @@
     <meta charset="UTF-8">
     <title>Projects Page</title>
     <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
+    <script>
+        (function () {
+            let savedTheme = "light";
+            try {
+                savedTheme = localStorage.getItem("site-theme") || "light";
+            } catch (e) {
+                savedTheme = "light";
+            }
+
+            document.documentElement.dataset.theme = savedTheme;
+
+            if (savedTheme === "custom") {
+                try {
+                    const raw = localStorage.getItem("site-theme-custom");
+                    if (raw) {
+                    const options = JSON.parse(raw);
+                    const root = document.documentElement;
+                    if (options.bg) {
+                        root.style.setProperty("--bg", options.bg);
+                        root.style.setProperty("--card-bg", options.bg);
+                    }
+                    if (options.text) {
+                        root.style.setProperty("--text", options.text);
+                    }
+                    if (options.font) {
+                        root.style.setProperty("--font", options.font);
+                    }
+                    }
+                } catch (e) {
+                    // ignore
+                }
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 
 <body>
+    <noscript>
+        <style>
+            .theme-btn {
+            display: none !important;
+            }
+        </style>
+        JavaScript is disabled in your browser. Some interactive features such as theme switching will not work.
+    </noscript>
+    
     <header>
         <nav>
             <a href="index.html">Home</a>
@@ -17,11 +60,10 @@
             <a href="form-no-js.html">Contact (No JS)</a> 
             <a href="form-with-js.html">Contact (With JS)</a>
             <a href="resume.html">Resume</a>
+            <a href="theme.html" class="theme-btn">Change Theme</a>
         </nav>
         <hr>
     </header>
-
-    <noscript>This site works without JavaScript. Some embeds just won't load.</noscript>
 
     <main class="fade-in">
          <table class="projects-list">

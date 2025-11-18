@@ -5,10 +5,54 @@
     <meta charset="UTF-8">
     <title>Contact Page</title>
     <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
+    <script>
+        (function () {
+            let savedTheme = "light";
+            try {
+                savedTheme = localStorage.getItem("site-theme") || "light";
+            } catch (e) {
+                savedTheme = "light";
+            }
+
+            document.documentElement.dataset.theme = savedTheme;
+
+            if (savedTheme === "custom") {
+                try {
+                    const raw = localStorage.getItem("site-theme-custom");
+                    if (raw) {
+                    const options = JSON.parse(raw);
+                    const root = document.documentElement;
+                    if (options.bg) {
+                        root.style.setProperty("--bg", options.bg);
+                        root.style.setProperty("--card-bg", options.bg);
+                    }
+                    if (options.text) {
+                        root.style.setProperty("--text", options.text);
+                    }
+                    if (options.font) {
+                        root.style.setProperty("--font", options.font);
+                    }
+                    }
+                } catch (e) {
+                    // ignore
+                }
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 
 <body>
+     <noscript>
+        <style>
+            .theme-btn {
+                display: none !important;
+            }
+        </style>
+        JavaScript is turned off. The form works fully without JavaScript, but visual enhancements 
+        such as the theme switch will not appear.
+    </noscript>
+    
     <header>
         <nav>
             <a href="index.html">Home</a> 
@@ -17,15 +61,10 @@
             <a href="form-no-js.html" class="active">Contact (No JS)</a> 
             <a href="form-with-js.html">Contact (With JS)</a>
             <a href="resume.html">Resume</a>
-            <button id="theme-toggle" class="theme-toggle" type="button" hidden>
-                Dark mode
-            </button>
+            <a href="theme.html" class="theme-btn">Change Theme</a>
         </nav>
         <hr>
     </header>
-
-    <noscript>JavaScript is turned off. The form works fully without JavaScript, but visual enhancements 
-            such as the dark/light theme switch will not appear.</noscript>
 
     <main class="fade-in">
         <h1 class="center-heading">Let's Connect!</h1>
@@ -85,8 +124,6 @@
             <a href="https://www.linkedin.com/in/kate-wang-174593244/">LinkedIn</a>
         </p>
     </footer>
-    
-    <script src="assets/scripts/theme.js" defer></script>
 </body>
 
 </html>
