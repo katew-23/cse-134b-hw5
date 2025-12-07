@@ -44,15 +44,28 @@
 
 <body>
     <header>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="experiences.html">Experiences</a>
-            <a href="projects.html">Projects</a> 
-            <a href="projects-crud.html" class="active">Manage Projects</a>
-            <a href="form-no-js.html">Contact (No JS)</a> 
-            <a href="form-with-js.html">Contact (With JS)</a>
-            <a href="resume.html">Resume</a>
-            <a href="theme.html" class="theme-btn">Change Theme</a>
+        <nav class="site-nav">
+            <button 
+                class="nav-toggle" 
+                type="button" 
+                aria-expanded="false" 
+                aria-label="Toggle navigation"
+                >
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+            </button>
+
+            <div class="nav-links" id="nav-links">
+                <a href="index.html">Home</a>
+                <a href="experiences.html">Experiences</a>
+                <a href="projects.html">Projects</a> 
+                <a href="projects-crud.html" class="active">Manage Projects</a>
+                <a href="form-no-js.html">Contact (No JS)</a> 
+                <a href="form-with-js.html">Contact (With JS)</a>
+                <a href="resume.html">Resume</a>
+                <a href="theme.html" class="theme-btn">Change Theme</a>
+            </div>
         </nav>
         <hr>
     </header>
@@ -140,6 +153,8 @@
     </footer>
     
     <script type="module" src="assets/scripts/projects-crud.js"></script>
+
+    <script src="assets/scripts/nav.js" defer></script>
 </body>
 
 </html>
