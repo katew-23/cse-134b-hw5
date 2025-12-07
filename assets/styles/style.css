@@ -250,56 +250,6 @@ skill-subsection ol {
     margin:  2rem auto;
 }
 
-.projects-list {
-    width: 90%;
-    max-width: 1000px;
-    margin: 1rem auto;
-    border-collapse: separate;
-    border-spacing: 0 1rem;
-}
-
-.project {
-    display: grid;
-    grid-template-columns: 22rem 1fr;
-    gap: 3rem;
-    padding: 2rem;
-    align-items: start;
-}
-
-.project + .project {
-    border-top: 1px solid color-mix(in srgb, white 75%, #7a735f);
-}
-
-.project td {
-    background: transparent;
-    border: none;
-    padding: 0;
-}
-
-.project img {
-    width: 22rem;
-    height: auto;
-    display: block;
-}
-
-.project td:last-child {
-    padding-left: 1rem;
-}
-
-.project a {
-    font-weight: bold;
-    color: color(display-p3 0 0.28 0.73);
-}
-
-.project a:hover {
-    font-style: italic;
-}
-
-.project p {
-    margin-top: 0.5rem;
-    white-space: pre-line;
-}
-
 .center-heading {
     margin-top: 0;
     text-align: center;
@@ -532,53 +482,6 @@ footer {
     }
     
 }
-
-/* these do not always work for some reason
-
-::view-transition-group(main) {
-    animation-duration: 0.5s;
-}
-
-@keyframes fadeInLeft {
-    0% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0%);
-        opacity: 1;
-    }
-}
-
-@keyframes fadeOutRight {
-    0% {
-        transform: translateX(0%);
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-}
-
-@keyframes fadeOut {
-    0% { 
-        opacity: 1; 
-    }
-    100% { 
-        opacity: 0; 
-    }
-}
-
-::view-transition-old(main) {
-    animation: fadeOut 0.4s ease-out;
-}
-
-::view-transition-new(main) {
-    opacity: 0; 
-    animation: fadeIn 0.4s ease-in;
-}
-*/
 
 @keyframes slide {
     from {
