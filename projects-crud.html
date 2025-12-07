@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Projects (CRUD)</title>
+    <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon">
+    <script>
+        (function () {
+            let savedTheme = "light";
+            try {
+                savedTheme = localStorage.getItem("site-theme") || "light";
+            } catch (e) {
+                savedTheme = "light";
+            }
+
+            document.documentElement.dataset.theme = savedTheme;
+
+            if (savedTheme === "custom") {
+                try {
+                    const raw = localStorage.getItem("site-theme-custom");
+                    if (raw) {
+                    const options = JSON.parse(raw);
+                    const root = document.documentElement;
+                    if (options.bg) {
+                        root.style.setProperty("--bg", options.bg);
+                        root.style.setProperty("--card-bg", options.bg);
+                    }
+                    if (options.text) {
+                        root.style.setProperty("--text", options.text);
+                    }
+                    if (options.font) {
+                        root.style.setProperty("--font", options.font);
+                    }
+                    }
+                } catch (e) {
+                    // ignore
+                }
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="assets/styles/style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="experiences.html">Experiences</a>
+            <a href="projects.html">Projects</a> 
+            <a href="projects-crud.html" class="active">Manage Projects</a>
+            <a href="form-no-js.html">Contact (No JS)</a> 
+            <a href="form-with-js.html">Contact (With JS)</a>
+            <a href="resume.html">Resume</a>
+            <a href="theme.html" class="theme-btn">Change Theme</a>
+        </nav>
+        <hr>
+    </header>
+
+    <noscript>
+        <style>
+            .theme-btn {
+            display: none !important;
+            }
+        </style>
+        JavaScript is disabled. Managing project data requires JavaScript to be enabled.
+    </noscript>
+
+    <main class="fade-in">
+        <h1 class="center-heading">Manage Project Data</h1>
+
+        <form id="saveForm" novalidate>
+            <fieldset>
+                <legend>Create / Update Project</legend>
+
+                <p>
+                    This form uses the <strong>project ID</strong> as the unique key. If a project with this ID
+                    already exists in localStorage, it will be <strong>updated</strong>. Otherwise a new entry will
+                    be <strong>created</strong>.
+                </p>
+
+                <label for="projId">Project ID (unique, no spaces) (required)</label>
+                <input type="text" id="projId" name="projId" required 
+                    placeholder="e.g. memori">
+
+                <label for="projTitle">Project Title</label>
+                <input type="text" id="projTitle" name="projTitle"
+                    placeholder="e.g. Memori Journaling App">
+
+                <label for="projLink">Project Link</label>
+                <input type="url" id="projLink" name="projLink"
+                    placeholder="e.g. https://github.com/...">
+
+                <label for="projImage">Main Image URL</label>
+                <input type="url" id="projImage" name="projImage"
+                    placeholder="e.g. https://example.com/memori-large.webp">
+
+                <label for="projImageSmall">Small Image URL</label>
+                <input type="url" id="projImageSmall" name="projImageSmall"
+                    placeholder="e.g. https://example.com/memori-small.webp">
+
+                <label for="projAlt">Image Alt Text</label>
+                <input type="text" id="projAlt" name="projAlt"
+                    placeholder="e.g. Screenshot of Memori app home screen">
+
+                <label for="projDescription">Short Description</label>
+                <textarea id="projDescription" name="projDescription" rows="4" 
+                    placeholder="e.g. A journaling app that helps students capture daily reflections with calendar-based views."></textarea>
+
+                <div class="form-messages" id="saveMessages"></div>
+
+                <button type="submit">Save (Create or Update)</button>
+            </fieldset>
+        </form>
+
+        <form id="deleteForm">
+            <fieldset>
+                <legend>Delete Project</legend>
+
+                <p>
+                    Delete a project using its <strong>project ID</strong>.
+                </p>
+
+                <label for="deleteId">Project ID to Delete</label>
+                <input type="text" id="deleteId" name="deleteId" required placeholder="acm-ai-website">
+
+                <div class="form-messages" id="deleteMessages"></div>
+
+                <button type="submit">Delete Project</button>
+            </fieldset>
+        </form>
+
+    </main>
+
+    <footer>
+       <p>
+            &copy; 2025 Kate Wang |
+            <a href="https://www.linkedin.com/in/kate-wang-174593244/">LinkedIn</a>
+        </p>
+    </footer>
+    
+    <script type="module" src="assets/scripts/projects-crud.js"></script>
+</body>
+
+</html>
