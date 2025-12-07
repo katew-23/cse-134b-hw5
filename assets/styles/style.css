@@ -241,6 +241,15 @@ skill-subsection ol {
     }
 }
 
+.projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 960px;
+    margin:  2rem auto;
+}
+
 .projects-list {
     width: 90%;
     max-width: 1000px;
