@@ -1,0 +1,47 @@
+[
+    {
+        "id": "memori",
+        "title": "Memori",
+        "link": "projects-subpage.html",
+        "img": "assets/img/memori-thumbnail.webp",
+        "imgSmall": "assets/img/memori-thumbnail-smaller.webp",
+        "imgAlt": "Memori Thumbnail",
+        "description": "A shared photo album and micro-journaling app that helps users preserve everyday moments with friends. Each user can post photos or notes that appear in a shared calendar view. Built using React Native with smooth navigation, profile pages, and a minimal grid-style gallery."
+    },
+    {
+        "id": "triton-droids",
+        "title": "Triton Droids Website",
+        "link": "https://www.tritondroids.com/",
+        "img": "assets/img/droids-thumbnail.webp",
+        "imgSmall": "assets/img/droids-thumbnail-smaller.webp",
+        "imgAlt": "Triton Droids Icon",
+        "description": "A fully redesigned, responsive website for UCSD's Triton Droids robotics team that showcases the club's current projects, team members, and key information for anyone interested in learning more about the organization."
+    },
+    {
+        "id": "foodflip",
+        "title": "FoodFlip",
+        "link": "",
+        "img": "assets/img/foodflip-thumbnail.webp",
+        "imgSmall": "",
+        "imgAlt": "FoodFlip Thumbnail",
+        "description": "A swipe-based restaurant discovery app where users flip cards to view restaurant details. The front displays name, cuisine, and price range, while the back reveals address, hours, and top dishes. The product displays recommended restaurants based on a user's liked restaurants, and users can also view all their liked restaurants in one place."
+    },
+    {
+        "id": "lockdin",
+        "title": "LockdIn",
+        "link": "",
+        "img": "assets/img/lockdin-thumbnail.webp",
+        "imgSmall": "",
+        "imgAlt": "LockdIn Thumbnail",
+        "description": "A group productivity app that helps students stay focused through collaborative study sessions. Groups set timers, block distracting apps, and deposit money into a shared fund using the Stripe API. Features a ranking system, challenge mode, and clean group creation flow powered by Express.js and Supabase."
+    },
+    {
+        "id": "caterinc",
+        "title": "Caterinc Inventory Management",
+        "link": "",
+        "img": "assets/img/caterinc-thumbnail.webp",
+        "imgSmall": "",
+        "imgAlt": "Inventory Management System Thumbnail",
+        "description": "A Java-based inventory management system designed for a local catering company to automate ingredient tracking and order processing. The system monitors real-time stock levels, maps each meal to its required ingredients, and automatically deducts quantities from inventory whenever an order is placed."
+    }
+]
