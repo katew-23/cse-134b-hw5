@@ -117,7 +117,7 @@ nav {
 .nav-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 3rem;
+    gap: 4rem;
     justify-content: center;
 }
 
@@ -507,7 +507,7 @@ footer {
     font-size: 0.95rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1050px) {
     nav {
         justify-content: space-between;
         padding: 0.5rem 1rem;
@@ -550,10 +550,6 @@ footer {
 
     .project img {
         width: 100%;
-    }
-
-    .project td:last-child {
-        padding-left: 0;
     }
 
     .center-heading { font-size: 2.5rem; }
